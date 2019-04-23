@@ -7,10 +7,11 @@ const burger = {
     });
   },
   add: (colVals, condition, cb) => {
-    orm.add('cats', colVals, condition, res => {
+    orm.add('burgers', colVals, condition, res => {
       cb(res);
     });
-  }
+  },
+
 };
 
 module.exports = burger;
