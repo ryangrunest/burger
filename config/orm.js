@@ -40,7 +40,7 @@ const orm = {
         })
     },
     update: (table, colVals, cond, cb) => {
-        const queryString = `UPDATE ${table} SET ${objToSql(colVals)} WHERE ${cond}`;
+        const queryString = `UPDATE ${table} SET ${colVals} WHERE ${cond}`;
         console.log(queryString);
         connection.query(queryString, function(err, result) {
           if (err) {
@@ -48,7 +48,7 @@ const orm = {
           }
           cb(result);
         });
-      },
+    },
     delete: function(table, condition, cb) {
         const queryString = `DELETE FROM ${table} WHERE ${condition}`;
 

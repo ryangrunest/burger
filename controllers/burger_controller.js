@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     let bData = {
       burgers: data
     };
-    console.log(bData);
+    // console.log(bData);
     res.render('index', bData);
   });
 });
@@ -19,10 +19,9 @@ router.post('/api/burgers', (req, res) => {
 });
 
 router.put('/api/burgers/:id', (req, res) => {
-  const condition = `id = ${req.params.id}`;
-  burger.update({
-    devoured: req.body.sleepy
-  }, condition, result => {
+  const condition = req.params.id;
+  // console.log(req.params);
+  burger.update('1', condition, result => {
     if (result.changedRows == 0) {
       // If no rows were changed, then the ID must not exist, so 404
       return res.status(404).end();
@@ -32,17 +31,17 @@ router.put('/api/burgers/:id', (req, res) => {
   });
 });
 
-router.delete("/api/cats/:id", (req, res) => {
-  const condition = `id = ${req.params.id}`;
+// router.delete("/api/burgers/:id", (req, res) => {
+//   const condition = `id = ${req.params.id}`;
 
-  cat.delete(condition, result => {
-    if (result.affectedRows == 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
-  });
-});
+//   burger.delete(condition, result => {
+//     if (result.affectedRows == 0) {
+//       // If no rows were changed, then the ID must not exist, so 404
+//       return res.status(404).end();
+//     } else {
+//       res.status(200).end();
+//     }
+//   });
+// });
 
 module.exports = router;

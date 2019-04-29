@@ -15,8 +15,7 @@ $(function() {
     $.ajax("/api/burgers", {
       type: "POST",
       data: newBurger
-    }).then(
-      function() {
+    }).then(() =>{
         console.log("created new burger");
         // Reload the page to get the updated list
         location.reload();
@@ -24,18 +23,17 @@ $(function() {
     );
   });
 
-  // $(".delete-cat").on("click", function(event) {
-  //   var id = $(this).data("id");
+  $(document).on("click", '.devour-burger', event => { 
+    let id = event.target.id;
+    // console.log(id);
 
-  //   // Send the DELETE request.
-  //   $.ajax("/api/cats/" + id, {
-  //     type: "DELETE"
-  //   }).then(
-  //     function() {
-  //       console.log("deleted cat", id);
-  //       // Reload the page to get the updated list
-  //       location.reload();
-  //     }
-  //   );
-  // });
+    $.ajax({
+      url: '/api/burgers/' + id,
+      type: 'PUT',
+      data: event.target.id
+    }).then(() => {
+      console.log('deleted burger' + id);
+      location.reload();
+    });
+  });
 });
